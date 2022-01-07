@@ -1,0 +1,13 @@
+
+GENERAL NOTES
+
+## FRONTEND: 
+
+- Resource: Logo: Figma
+- Resource: Images: Undraw.co
+
+Styled Components
+- Styled Components are kept in src/assets/wrappers
+- Each directory has an default export file with all the folder contents (Components)
+
+
