@@ -17,5 +17,6 @@
 - normalize.css: npm install normalize.css
 - import normalize.css in index.js
 - replace contents of index.css
+- Updates to React Router
 
 ### BACKEND
