@@ -7,8 +7,8 @@ const Error = () => {
     <Wrapper className="full-page">
       <div>
         <img src={img} alt="" />
-        <h3>text</h3>
-        <p>text</p>
+        <h3>Ohh! page not found</h3>
+        <p>We can't seem to find the page you're looking for</p>
         <Link to="/">Back Home</Link>
       </div>
     </Wrapper>
