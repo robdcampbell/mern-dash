@@ -1,1 +1,20 @@
-{}
+{
+  "name": "mern-dash",
+  "description": "### Mongo, Express, React.js, Node.js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/robdcampbell/mern-dash.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robdcampbell/mern-dash/issues"
+  },
+  "homepage": "https://github.com/robdcampbell/mern-dash#readme"
+}
