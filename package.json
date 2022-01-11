@@ -3,8 +3,9 @@
   "description": "### Mongo, Express, React.js, Node.js",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/robdcampbell/mern-dash/issues"
   },
-  "homepage": "https://github.com/robdcampbell/mern-dash#readme"
+  "homepage": "https://github.com/robdcampbell/mern-dash#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }
