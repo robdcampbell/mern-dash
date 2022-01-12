@@ -16,6 +16,7 @@ import errorHandlerMiddleware from "./middleware/error-handler.js";
 
 // MIDDLEWARE ////////////////////////
 app.use(express.json());
+app.use(cors);
 
 app.get("/", (req, res) => {
   res.send("Welcome!");
