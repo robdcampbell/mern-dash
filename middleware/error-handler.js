@@ -1,9 +1,10 @@
 import { StatusCodes } from "http-status-codes";
 
 const errorHandlerMiddleware = (err, req, res, next) => {
+  console.log(err);
   // throws error received from one of the controllers
   // err.message comes from default Error() constructor (check MDN)
-  console.log(err.message);
+  //console.log(err.message);
   // MONGOOSE
   const defaultError = {
     // * err.statuscode coming from CustomAPIError in authController
