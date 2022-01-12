@@ -1,6 +1,6 @@
 const errorHandlerMiddleware = (err, req, res, next) => {
-  console.log(err);
-  res.status(500).json({ message: "There was an error" });
+  // console.log(err);
+  res.status(500).json({ msg: err });
 };
 
 export default errorHandlerMiddleware;
