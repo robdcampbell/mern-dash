@@ -11,3 +11,6 @@ Styled Components
 - Each directory has an default export file with all the folder contents (Components)
 
 
+
+
+- httpOnly Cookies with JWT: https://www.youtube.com/watch?v=894seNhONF8
