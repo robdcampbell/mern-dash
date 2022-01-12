@@ -3,6 +3,7 @@ import express from "express";
 const app = express();
 import dotenv from "dotenv";
 dotenv.config();
+import "express-async-errors";
 const PORT = process.env.PORT || 5000;
 // db and authenticate user
 import connectDB from "./db/connect.js";
