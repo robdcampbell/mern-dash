@@ -29,6 +29,19 @@ const reducer = (state, action) => {
       isloading: true,
     };
   }
+  if (action.type === REGISTER_USER_SUCCESS) {
+    return {
+      ...state,
+      isloading: false,
+      token: action.payload.token,
+      user: action.payload,
+      userLocation: action.payload.userLocation,
+      jobLocation: action.payload.jobLocation,
+      showAlert: true,
+      alertType: "success",
+      alertText: "User Created! Redrecting...",
+    };
+  }
   throw new Error(`no such action: ${action.type}`);
 };
 
