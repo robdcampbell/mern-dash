@@ -1,5 +1,6 @@
 import React, { useReducer, useContext } from "react";
 import reducer from "./reducer";
+import axios from "axios";
 import {
   DISPLAY_ALERT,
   CLEAR_ALERT,
@@ -36,7 +37,18 @@ const AppProvider = ({ children }) => {
   };
 
   const registerUser = async (currentUser) => {
-    console.log(currentUser);
+    dispatch({ type: REGISTER_USER_BEGIN });
+    try {
+      const response = await axios.post("/api/vi/auth/register", currentUser);
+      console.log(response);
+      const { user, token, location } = response.data;
+      dispatch({
+        type: REGISTER_USER_SUCCESS,
+        payload: { user, token, location },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
