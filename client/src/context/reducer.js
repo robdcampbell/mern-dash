@@ -4,6 +4,12 @@ import {
   REGISTER_USER_BEGIN,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_ERROR,
+  LOGIN_USER_BEGIN,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_ERROR,
+  SETUP_USER_BEGIN,
+  SETUP_USER_SUCCESS,
+  SETUP_USER_ERROR,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -51,7 +57,65 @@ const reducer = (state, action) => {
       alertText: action.payload.msg,
     };
   }
-  throw new Error(`no such action: ${action.type}`);
+  if (action.type === LOGIN_USER_BEGIN) {
+    return {
+      ...state,
+      isloading: true,
+    };
+  }
+  if (action.type === LOGIN_USER_SUCCESS) {
+    return {
+      ...state,
+      isloading: false,
+      token: action.payload.token,
+      user: action.payload,
+      userLocation: action.payload.userLocation,
+      jobLocation: action.payload.jobLocation,
+      showAlert: true,
+      alertType: "success",
+      alertText: "Login Successful! Redirecting...",
+    };
+  }
+  if (action.type === LOGIN_USER_ERROR) {
+    return {
+      ...state,
+      isloading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: action.payload.msg,
+    };
+  }
+
+  if (action.type === SETUP_USER_BEGIN) {
+    return {
+      ...state,
+      isloading: true,
+    };
+  }
+  if (action.type === SETUP_USER_SUCCESS) {
+    return {
+      ...state,
+      isloading: false,
+      token: action.payload.token,
+      user: action.payload,
+      userLocation: action.payload.userLocation,
+      jobLocation: action.payload.jobLocation,
+      showAlert: true,
+      alertType: "success",
+      alertText: action.payload.alertText,
+    };
+  }
+  if (action.type === SETUP_USER_ERROR) {
+    return {
+      ...state,
+      isloading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: action.payload.msg,
+    };
+  }
+
+  throw new Error(`No such action: ${action.type}`);
 };
 
 export default reducer;
