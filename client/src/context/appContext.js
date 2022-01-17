@@ -40,15 +40,30 @@ const AppProvider = ({ children }) => {
     dispatch({ type: REGISTER_USER_BEGIN });
     try {
       const response = await axios.post("/api/vi/auth/register", currentUser);
+      // const response = await fetch("/api/vi/auth/register", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(currentUser),
+      // });
+
       console.log(response);
       const { user, token, location } = response.data;
       dispatch({
         type: REGISTER_USER_SUCCESS,
         payload: { user, token, location },
       });
+
+      // LocalStorage
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
+      dispatch({
+        type: REGISTER_USER_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
     }
+    clearAlert();
   };
 
   return (

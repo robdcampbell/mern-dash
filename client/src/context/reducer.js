@@ -42,6 +42,15 @@ const reducer = (state, action) => {
       alertText: "User Created! Redrecting...",
     };
   }
+  if (action.type === REGISTER_USER_ERROR) {
+    return {
+      ...state,
+      isloading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: action.payload.msg,
+    };
+  }
   throw new Error(`no such action: ${action.type}`);
 };
 
