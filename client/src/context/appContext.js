@@ -39,17 +39,11 @@ const AppProvider = ({ children }) => {
   const registerUser = async (currentUser) => {
     dispatch({ type: REGISTER_USER_BEGIN });
     try {
-      const response = await axios.post("/api/vi/auth/register", currentUser);
-      // const response = await fetch("/api/vi/auth/register", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(currentUser),
-      // });
+      const response = await axios.post("/api/v1/auth/register", currentUser);
 
       console.log(response);
       const { user, token, location } = response.data;
+
       dispatch({
         type: REGISTER_USER_SUCCESS,
         payload: { user, token, location },
