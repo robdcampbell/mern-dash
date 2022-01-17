@@ -4,6 +4,7 @@ const app = express();
 import dotenv from "dotenv";
 dotenv.config();
 import "express-async-errors";
+import morgan from "morgan";
 const PORT = process.env.PORT || 5000;
 // db and authenticate user
 import connectDB from "./db/connect.js";
@@ -15,6 +16,9 @@ import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 
 // MIDDLEWARE ////////////////////////
+if (process.env.NODE_ENV !== "prodcution") {
+  app.use(morgan("dev"));
+}
 app.use(express.json());
 
 app.get("/", (req, res) => {
