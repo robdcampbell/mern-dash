@@ -1,6 +1,7 @@
 import main from "../assets/images/main.svg";
 import Wrapper from "../assets/wrappers/LandingPage";
 import { Logo } from "../components/index.js";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
@@ -19,7 +20,9 @@ const Landing = () => {
             waistcoat 8-bit mumblecore gluten-free mixtape mustache tumblr
             chambray unicorn.
           </p>
-          <button className="btn btn-hero">Login / Register</button>
+          <Link to="/register">
+            <button className="btn btn-hero">Login / Register</button>
+          </Link>
         </div>
         <img src={main} alt="Landing-Image" className="img main-img" />
       </div>
