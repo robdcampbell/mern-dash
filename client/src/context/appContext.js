@@ -117,7 +117,7 @@ const AppProvider = ({ children }) => {
         type: SETUP_USER_SUCCESS,
         payload: { user, token, location, alertText },
       });
-
+      // console.log(`SUCCESSFUL: ${user.name}`);
       addUserToLocalStorage({ user, token, location });
     } catch (error) {
       dispatch({
