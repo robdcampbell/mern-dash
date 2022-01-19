@@ -4,19 +4,19 @@ import Logo from "./Logo";
 import Wrapper from "../assets/wrappers/BigSidebar";
 
 const BigSidebar = () => {
-  const { showSideBar, toggleSidebar } = useAppContext();
+  const { showSidebar, toggleSidebar } = useAppContext();
   return (
     <Wrapper>
       <div
         className={
-          showSideBar ? "sidebar-container" : "sidebar-container show-sidebar"
+          showSidebar ? "sidebar-container" : "sidebar-container show-sidebar"
         }
       >
         <div className="content">
           <header>
             <Logo />
           </header>
-          <NavLinks toggleSidebar={toggleSidebar} />
+          <NavLinks />
         </div>
       </div>
     </Wrapper>
