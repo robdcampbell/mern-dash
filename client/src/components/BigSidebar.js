@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import Wrapper from "../assets/wrappers/BigSidebar";
 
 const BigSidebar = () => {
-  const { showSidebar, toggleSidebar } = useAppContext();
+  const { showSidebar } = useAppContext();
   return (
     <Wrapper>
       <div
