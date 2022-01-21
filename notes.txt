@@ -13,4 +13,5 @@ Styled Components
 
 
 
+// Continue with local storage, reasearch additional options as well
 - httpOnly Cookies with JWT: https://www.youtube.com/watch?v=894seNhONF8
