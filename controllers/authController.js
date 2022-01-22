@@ -49,8 +49,6 @@ const login = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  console.log(req.user);
-
   const { email, name, lastName, location } = req.body;
   if (!email || !name || !lastName || !location) {
     throw new BadRequestError("Please provide all values");
@@ -66,8 +64,6 @@ const updateUser = async (req, res) => {
 
   const token = user.createJWT();
   res.status(StatusCodes.OK).json({ user, token, location: user.location });
-
-  console.log(req.user);
 };
 
 export { register, login, updateUser };
