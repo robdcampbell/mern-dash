@@ -1,6 +1,7 @@
 import { useState } from "react";
-// import {FormRow}
+import { FormRow, Alert } from "../../components";
 import { useAppContext } from "../../context/appContext";
+import Wrapper from "../../assets/wrappers/DashboardFormPage";
 
 const Profile = () => {
   const { user, showAlert, displayAlert, updateUser, isLoading } =
@@ -11,12 +12,64 @@ const Profile = () => {
   const [lastName, setLastName] = useState(user?.lastName);
   const [location, setLocation] = useState(user?.location);
 
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Remove while testing
+    if (!name || !email || !lastName || !location) {
+      displayAlert();
+      return;
+    }
+    updateUser({ name, email, lastName, location });
+    console.log("Update User");
+  };
 
   return (
-    <div>
-      <h1>Profile Page</h1>
-    </div>
+    <Wrapper>
+      <form className="form" onSubmit={handleSubmit}>
+        <h3>Profile</h3>
+        {showAlert && <Alert />}
+        <div className="form-center">
+          <FormRow
+            type="text"
+            name="name"
+            value={name}
+            handleChange={(e) => {
+              setName(e.target.value);
+            }}
+          />
+          <FormRow
+            type="text"
+            labelText="Last name"
+            name="lastName"
+            value={lastName}
+            handleChange={(e) => {
+              setLastName(e.target.value);
+            }}
+          />
+          <FormRow
+            type="text"
+            labelText="Email"
+            name="email"
+            value={email}
+            handleChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+          <FormRow
+            type="text"
+            labelText="Location"
+            name="location"
+            value={location}
+            handleChange={(e) => {
+              setLocation(e.target.value);
+            }}
+          />
+          <button className="btn btn-block" type="submit" disabled={isLoading}>
+            {isLoading ? "Please Wait..." : "Save Changes"}
+          </button>
+        </div>
+      </form>
+    </Wrapper>
   );
 };
 
