@@ -18,6 +18,7 @@ const Profile = () => {
     if (!name || !email || !lastName || !location) {
       displayAlert();
       return;
+      ///...
     }
     updateUser({ name, email, lastName, location });
     console.log("Update User");
