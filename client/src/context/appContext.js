@@ -38,8 +38,13 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // axios
-  axios.defaults.headers.common["Authorization"] = `Bearer ${state.token}`;
+  // axios default global headers:
+  // axios.defaults.headers.common["Authorization"] = `Bearer ${state.token}`;
+
+  // axios authFetch
+  const authFetch = axios.create({
+    baseURL: "/api/v1",
+  });
 
   const displayAlert = () => {
     dispatch({ type: DISPLAY_ALERT });
