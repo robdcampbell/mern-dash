@@ -27,7 +27,7 @@ const initialState = {
   alertText: "",
   alertType: "",
   user: user ? JSON.parse(user) : null,
-  token: null,
+  token: token || null,
   userLocation: userLocation || "",
   jobLocation: "",
   showSidebar: false,
@@ -37,6 +37,9 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // axios
+  axios.defaults.headers.common["Authorization"] = `Bearer ${state.token}`;
 
   const displayAlert = () => {
     dispatch({ type: DISPLAY_ALERT });
@@ -138,7 +141,22 @@ const AppProvider = ({ children }) => {
   };
 
   const updateUser = async (currentUser) => {
-    console.log(currentUser);
+    try {
+      const { data } = await axios.patch(
+        "/api/v1/auth/updateUser",
+        currentUser
+      );
+      /*   
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      */
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
     // dispatch({ type: UPDATE_USER });
   };
 
