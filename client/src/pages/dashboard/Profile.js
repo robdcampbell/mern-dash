@@ -14,14 +14,11 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Remove while testing
     if (!name || !email || !lastName || !location) {
       displayAlert();
       return;
-      ///...
     }
     updateUser({ name, email, lastName, location });
-    console.log("Update User");
   };
 
   return (
@@ -47,6 +44,7 @@ const Profile = () => {
               setLastName(e.target.value);
             }}
           />
+          {/* REMOVE EMAIL? */}
           <FormRow
             type="text"
             labelText="Email"
