@@ -44,6 +44,9 @@ const AppProvider = ({ children }) => {
   // axios authFetch
   const authFetch = axios.create({
     baseURL: "/api/v1",
+    headers: {
+      Authorization: `Bearer ${state.token}`,
+    },
   });
 
   const displayAlert = () => {
@@ -147,11 +150,8 @@ const AppProvider = ({ children }) => {
 
   const updateUser = async (currentUser) => {
     try {
-      const { data } = await axios.patch(
-        "/api/v1/auth/updateUser",
-        currentUser
-      );
-      /*   
+      const { data } = await authFetch.patch("/auth/updateUser", currentUser);
+      /*
         {
           headers: {
             Authorization: `Bearer ${state.token}`,
@@ -162,7 +162,6 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
-    // dispatch({ type: UPDATE_USER });
   };
 
   return (
