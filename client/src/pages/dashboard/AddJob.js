@@ -14,6 +14,8 @@ const AddJob = () => {
     jobTypeOptions,
     status,
     statusOptions,
+    handleChange,
+    clearValues,
   } = useAppContext();
 
   const handleSubmit = (e) => {
@@ -22,12 +24,14 @@ const AddJob = () => {
       displayAlert();
       return;
     }
+    console.log("create-Job");
   };
 
   const handleJobInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     console.log(`${name} : ${value}`);
+    handleChange({ name, value });
   };
   return (
     <Wrapper>
@@ -81,6 +85,15 @@ const AddJob = () => {
               onClick={handleSubmit}
             >
               Submit
+            </button>
+            <button
+              className="btn btn-block clear-btn"
+              onClick={(e) => {
+                e.preventDefault();
+                clearValues();
+              }}
+            >
+              clear
             </button>
           </div>
         </div>
