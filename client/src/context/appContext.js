@@ -243,6 +243,7 @@ const AppProvider = ({ children }) => {
       });
       clearAlert();
     }
+    clearAlert();
   };
 
   const getJobs = async () => {
@@ -278,6 +279,7 @@ const AppProvider = ({ children }) => {
         handleChange,
         clearValues,
         createJob,
+        getJobs,
       }}
     >
       {children}
