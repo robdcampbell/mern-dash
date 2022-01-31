@@ -5,6 +5,7 @@ import {
   NotFoundError,
   UnAuthenticatedError,
 } from "../errors/index.js";
+import checkPermissions from "../utils/checkPermissions.js";
 
 const createJob = async (req, res) => {
   const { position, company } = req.body;
@@ -38,6 +39,9 @@ const updateJob = async (req, res) => {
     throw new NotFoundError(`No job with id: ${jobId}`);
   }
   // check permissions
+  // send entire req.user in so admin permissions can be checked.
+  checkPermissions(req.user, job.createdBy);
+
   const updatedJob = await Job.findOneAndUpdate({ _id: jobId }, req.body, {
     new: true,
     runValidators: true,
