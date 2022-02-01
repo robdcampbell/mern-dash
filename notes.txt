@@ -17,3 +17,15 @@ Styled Components
 - httpOnly Cookies with JWT: https://www.youtube.com/watch?v=894seNhONF8
 
 // Bearer Token next. 
+
+
+
+/// AFTER COMPLETION: 
+
+    - ADAPT FOR P.E.R.N. stack
+        - a) sequelize (db, aggregate, etc...)
+        - b) 
+
+ - 1) Admin users
+ - 2) Admin users control panel 
+ - 3) Password email reset
