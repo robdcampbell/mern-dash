@@ -26,6 +26,8 @@ Styled Components
         - a) sequelize (db, aggregate, etc...)
         - b) 
 
+    - Change into Project/Help Disk Dash 
+    
  - 1) Admin users
  - 2) Admin users control panel 
  - 3) Password email reset
