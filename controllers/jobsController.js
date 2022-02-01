@@ -22,21 +22,52 @@ const createJob = async (req, res) => {
 
 const deleteJob = async (req, res) => {
   const { id: jobId } = req.params;
-
   const job = await Job.findOne({ _id: jobId });
-
   if (!job) {
     throw new NotFoundError(`No job with id: ${jobId}`);
   }
-
   checkPermissions(req.user, job.createdBy);
-
   await job.remove();
   res.status(StatusCodes.OK).json({ msg: "Success! Job Removed!" });
 };
 
 const getAllJobs = async (req, res) => {
-  const jobs = await Job.find({ createdBy: req.user.userId });
+  const { status, jobType, sort, search } = req.query;
+
+  const queryObject = {
+    createdBy: req.user.userId,
+  };
+  // add things based on condition
+  if (status !== "all") {
+    queryObject.status = status;
+  }
+  if (jobType !== "all") {
+    queryObject.jobType = jobType;
+  }
+
+  if (search) {
+    queryObject.position = { $regex: search, $options: "i" };
+  }
+
+  // No await, will run that once conditions in the object are set
+  let result = Job.find(queryObject);
+
+  // chain sort conditions
+  if (sort === "latest") {
+    result = result.sort("-createdAt");
+  }
+  if (sort === "oldest") {
+    result = result.sort("createdAt");
+  }
+  if (sort === "a-z") {
+    result = result.sort("position");
+  }
+  if (sort === "z-a") {
+    result = result.sort("-position");
+  }
+
+  const jobs = await result;
+
   res
     .status(StatusCodes.OK)
     .json({ jobs, totalJobs: jobs.length, numOfPages: 1 });
