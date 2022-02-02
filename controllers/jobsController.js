@@ -66,6 +66,11 @@ const getAllJobs = async (req, res) => {
     result = result.sort("-position");
   }
 
+  const limit = 10;
+  const skip = 1;
+
+  result = result.skip(skip).limit(limit);
+
   const jobs = await result;
 
   res
