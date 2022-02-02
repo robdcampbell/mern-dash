@@ -24,7 +24,7 @@ const SearchContainer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("ok ok ok ok ok ");
+    clearFilters();
   };
 
   return (

@@ -32,6 +32,7 @@ import {
   EDIT_JOB_ERROR,
   SHOW_STATS_BEGIN,
   SHOW_STATS_SUCCESS,
+  CLEAR_FILTERS,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -212,6 +213,7 @@ const AppProvider = ({ children }) => {
       const { data } = await authFetch.patch("/auth/updateUser", currentUser);
 
       const { user, location, token } = data;
+
       dispatch({
         type: UPDATE_USER_SUCCESS,
         payload: { user, location, token },
@@ -337,7 +339,7 @@ const AppProvider = ({ children }) => {
   };
 
   const clearFilters = () => {
-    console.log("Clear filters");
+    dispatch({ type: CLEAR_FILTERS });
   };
 
   return (

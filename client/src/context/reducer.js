@@ -29,6 +29,7 @@ import {
   EDIT_JOB_ERROR,
   SHOW_STATS_BEGIN,
   SHOW_STATS_SUCCESS,
+  CLEAR_FILTERS,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -164,8 +165,8 @@ const reducer = (state, action) => {
       isLoading: false,
       token: action.payload.token,
       user: action.payload.user,
-      userLocation: action.payload.userLocation,
-      jobLocation: action.payload.jobLocation,
+      userLocation: action.payload.location,
+      jobLocation: action.payload.location,
       showAlert: true,
       alertType: "success",
       alertText: "User Profile Updated!",
@@ -304,6 +305,16 @@ const reducer = (state, action) => {
       isLoading: false,
       stats: action.payload.stats,
       monthlyApplications: action.payload.monthlyApplications,
+    };
+  }
+
+  if (action.type === CLEAR_FILTERS) {
+    return {
+      ...state,
+      search: "",
+      searchStatus: "all",
+      searchType: "all",
+      sort: "latest",
     };
   }
 
