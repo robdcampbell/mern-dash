@@ -101,7 +101,6 @@ const AppProvider = ({ children }) => {
       return response;
     },
     (error) => {
-      // console.log(error.response);
       if (error.response.status === 401) {
         logOutUser();
       }
@@ -136,7 +135,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: REGISTER_USER_BEGIN });
     try {
       const response = await axios.post("/api/v1/auth/register", currentUser);
-      // console.log(response);
+
       const { user, token, location } = response.data;
       dispatch({
         type: REGISTER_USER_SUCCESS,
@@ -145,7 +144,6 @@ const AppProvider = ({ children }) => {
       // LocalStorage
       addUserToLocalStorage({ user, token, location });
     } catch (error) {
-      // console.log(error.response);
       dispatch({
         type: REGISTER_USER_ERROR,
         payload: { msg: error.response.data.msg },
@@ -188,7 +186,7 @@ const AppProvider = ({ children }) => {
         type: SETUP_USER_SUCCESS,
         payload: { user, token, location, alertText },
       });
-      // console.log(`SUCCESSFUL: ${user.name}`);
+
       addUserToLocalStorage({ user, token, location });
     } catch (error) {
       dispatch({
@@ -264,8 +262,8 @@ const AppProvider = ({ children }) => {
   };
 
   const getJobs = async () => {
-    const { search, searchStatus, searchType, sort } = state;
-    let url = `/jobs?status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
+    const { page, search, searchStatus, searchType, sort } = state;
+    let url = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
 
     if (search) {
       url = url + `&search=${search}`;
@@ -280,7 +278,6 @@ const AppProvider = ({ children }) => {
         payload: { jobs, totalJobs, numOfPages },
       });
     } catch (error) {
-      console.log(error.response);
       logOutUser();
     }
     clearAlert();
@@ -319,8 +316,7 @@ const AppProvider = ({ children }) => {
       await authFetch.delete(`/jobs/${jobId}`);
       getJobs();
     } catch (error) {
-      console.log(error.response);
-      // logOutUser()
+      logOutUser();
     }
   };
 
@@ -338,7 +334,6 @@ const AppProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      console.log(error.response);
       logOutUser();
     }
     clearAlert();
